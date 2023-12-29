@@ -32,8 +32,8 @@ output "cache_subnet_groups" {
   value = aws_elasticache_subnet_group.elasticache.name
 }
 
-output "client_vpn_endpoint" {
-  value = aws_ec2_client_vpn_endpoint.vpn.id
-}
+#output "client_vpn_endpoint" {
+#  value = aws_ec2_client_vpn_endpoint.vpn.id
+#}
 
 

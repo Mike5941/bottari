@@ -62,13 +62,13 @@ data "aws_availability_zones" "zone" {
 
 # Client VPN endpoint ARN
 #----------------------------------------
-variable "server_arn" {
-  type = string
-}
-
-variable "client_arn" {
-  type = string
-}
+#variable "server_arn" {
+#  type = string
+#}
+#
+#variable "client_arn" {
+#  type = string
+#}
 
 
 # local variables

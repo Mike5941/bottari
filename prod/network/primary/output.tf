@@ -32,8 +32,8 @@ output "cache_subnet_group" {
   value = module.primary.cache_subnet_groups
 }
 
-output "vpn_endpoint_id" {
-  value = module.primary.client_vpn_endpoint
-}
+#output "vpn_endpoint_id" {
+#  value = module.primary.client_vpn_endpoint
+#}
 
 

@@ -24,7 +24,7 @@ module "secondary" {
   project_name = "WEB-Secondary"
   vpc_cidr     = "10.2.0.0/16"
 
-  server_arn = "arn:aws:acm:ap-northeast-1:617669297376:certificate/12bf8dab-93a5-403f-8599-a424e9d9cb27"
-  client_arn = "arn:aws:acm:ap-northeast-1:617669297376:certificate/6ab02bf1-0011-4665-a746-708828fde921"
+#  server_arn = "arn:aws:acm:ap-northeast-1:617669297376:certificate/12bf8dab-93a5-403f-8599-a424e9d9cb27"
+#  client_arn = "arn:aws:acm:ap-northeast-1:617669297376:certificate/6ab02bf1-0011-4665-a746-708828fde921"
 }
 
