@@ -1,8 +1,8 @@
-# output "alb_dns_name" {
-#   value       = module.webserver_cluster.alb_dns_name
-#   description = "The domain name of the load balancer"
-# }
+ output "alb_dns_name" {
+   value       = module.secondary_webserver.alb_dns_name
+   description = "The domain name of the load balancer"
+ }
 
-output "bastion_host_public_ip" {
-  value = module.secondary_webserver.bastion_host_public_ip
+output "web_sg_id" {
+  value = module.secondary_webserver.web_sg_id
 }

@@ -3,6 +3,6 @@
    description = "The domain name of the load balancer"
  }
 
-output "bastion_host_public_ip" {
-  value = module.primary_webserver.bastion_host_public_ip
+output "web_sg_id" {
+  value = module.primary_webserver.web_sg_id
 }

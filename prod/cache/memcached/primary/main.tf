@@ -24,6 +24,7 @@ module "primary_cache" {
 
   cluster_id = "primary-memcached"
 
+  web_remote_state_key = "stage/services/web/primary/terraform.tfstate"
   vpc_remote_state_key = "stage/network/primary/terraform.tfstate"
 }
 

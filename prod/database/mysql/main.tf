@@ -33,6 +33,7 @@ module "primary" {
   }
 
   vpc_remote_state_key = "stage/network/primary/terraform.tfstate"
+#  web_remote_state_key = "stage/services/web/primary/terraform.tfstate"
 
   db_name                 = "wordpress_db"
   backup_retention_period = 1
