@@ -3,7 +3,6 @@
    description = "The domain name of the load balancer"
  }
 
-#output "private_ip" {
-#  value       = module.primary_webserver.private_ip
-#  description = "The private IP address of the web server"
-#}
+output "bastion_host_public_ip" {
+  value = module.primary_webserver.bastion_host_public_ip
+}
