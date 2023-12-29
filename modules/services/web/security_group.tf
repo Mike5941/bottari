@@ -18,12 +18,12 @@ resource "aws_security_group" "bastion" {
   }
 }
 
-resource "aws_security_group" "web" {
-  name = "${var.cluster_name}-web"
+resource "aws_security_group" "alb" {
+  name = "${var.cluster_name}-alb"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 
   tags = {
-    Name = "${var.cluster_name}-web"
+    Name = "${var.cluster_name}-alb-sg"
   }
 }
 
@@ -35,15 +35,17 @@ locals {
   http_group_in = {
     wordpress = aws_security_group.wordpress.id,
     bastion =  aws_security_group.bastion.id,
+    alb = aws_security_group.alb.id
   }
   https_group_in = {
     wordpress = aws_security_group.wordpress.id,
     bastion =  aws_security_group.bastion.id
+    alb = aws_security_group.alb.id
   }
   all_out = {
     wordpress = aws_security_group.wordpress.id,
     bastion =  aws_security_group.bastion.id,
-    web = aws_security_group.web.id
+    alb = aws_security_group.alb.id
   }
 }
 
@@ -53,7 +55,7 @@ resource "aws_security_group_rule" "allow_ssh" {
   from_port = local.ssh_port
   to_port = local.ssh_port
   protocol = "tcp"
-  cidr_blocks = local.my_ip
+  cidr_blocks = local.all_ips
   security_group_id = each.value
 }
 

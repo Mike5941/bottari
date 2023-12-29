@@ -14,7 +14,7 @@ variable "cluster_id" {
 }
 
 variable "remote_state_bucket_name" {
-  type = string
+  type    = string
   default = "terraform-wonsoong"
 }
 
@@ -26,9 +26,9 @@ locals {
   seoul_region = "ap-northeast-2"
 
   memcached_port = 11211
-  all_protocols = "-1"
+  all_protocols  = "-1"
 
-  my_ip = ["125.242.51.183/32"]
+  my_ip    = ["125.242.51.183/32"]
   local_ip = ["10.0.0.0/8"]
-  all_ip = ["0.0.0.0/0"]
+  all_ip   = ["0.0.0.0/0"]
 }

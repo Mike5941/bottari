@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-1"
-  alias = "secondary"
+  alias  = "secondary"
 }
 
 
@@ -28,15 +28,15 @@ module "secondary_webserver" {
     aws = aws.secondary
   }
 
-  cluster_name           = "webservers-secondary"
-  remote_state_bucket = "terraform-wonsoong"
-  vpc_remote_state_key    = "stage/network/secondary/terraform.tfstate"
-  private_ip = "10.2.1.100"
+  cluster_name         = "webservers-secondary"
+  remote_state_bucket  = "terraform-wonsoong"
+  vpc_remote_state_key = "stage/network/secondary/terraform.tfstate"
+  private_ip           = "10.2.1.100"
 
   db_username = module.db_secrets.db_credentials["username"]
   db_password = module.db_secrets.db_credentials["password"]
-  db_name = data.terraform_remote_state.db.outputs.primary_dbname
-  db_host = data.terraform_remote_state.db.outputs.secondary_address
-  db_port = data.terraform_remote_state.db.outputs.secondary_port
+  db_name     = data.terraform_remote_state.db.outputs.primary_dbname
+  db_host     = data.terraform_remote_state.db.outputs.secondary_address
+  db_port     = data.terraform_remote_state.db.outputs.secondary_port
 }
 

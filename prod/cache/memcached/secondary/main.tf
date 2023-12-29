@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-1"
-  alias = "secondary"
+  alias  = "secondary"
 }
 
 module "secondary_cache" {
@@ -21,7 +21,6 @@ module "secondary_cache" {
     aws = aws.secondary
   }
 
-  cluster_id = "secondary-memcached"
-  vpc_remote_state_key = "stage/network/primary/terraform.tfstate"
-
+  cluster_id           = "secondary-memcached"
+  vpc_remote_state_key = "stage/network/secondary/terraform.tfstate"
 }

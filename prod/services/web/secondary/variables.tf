@@ -2,18 +2,8 @@ data "terraform_remote_state" "db" {
   backend = "s3"
 
   config = {
-    bucket = var.remote_state_bucket
-    key    = var.db_remote_state_key
+    bucket = "terraform-wonsoong"
+    key    = "stage/database/mysql/terraform.tfstate"
     region = "ap-northeast-2"
   }
-}
-
-variable "db_remote_state_key" {
-  type = string
-  default = "stage/database/mysql/terraform.tfstate"
-}
-
-variable "remote_state_bucket" {
-  type = string
-  default = "terraform-wonsoong"
 }

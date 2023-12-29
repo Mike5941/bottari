@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-1"
-  alias = "secondary"
+  alias  = "secondary"
 }
 
 module "secondary" {
@@ -21,10 +21,10 @@ module "secondary" {
     aws = aws.secondary
   }
 
-  project_name   = "WEB-Secondary"
-  vpc_cidr = "10.2.0.0/16"
+  project_name = "WEB-Secondary"
+  vpc_cidr     = "10.2.0.0/16"
 
-  server_arn = "arn:aws:acm:ap-northeast-1:675481538193:certificate/d1df0001-6451-45cb-b334-7b963eed6187"
-  client_arn = "arn:aws:acm:ap-northeast-1:675481538193:certificate/7c769b5a-cb0c-42bf-a6a7-3312c17f90cb"
+  server_arn = "arn:aws:acm:ap-northeast-1:617669297376:certificate/12bf8dab-93a5-403f-8599-a424e9d9cb27"
+  client_arn = "arn:aws:acm:ap-northeast-1:617669297376:certificate/6ab02bf1-0011-4665-a746-708828fde921"
 }
 

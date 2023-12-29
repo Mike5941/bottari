@@ -27,7 +27,7 @@ variable "private_ip" {
 }
 
 variable "remote_state_bucket" {
-  type = string
+  type    = string
   default = "terraform-wonsoong"
 }
 
@@ -36,13 +36,13 @@ variable "vpc_remote_state_key" {
 }
 
 variable "db_username" {
-  type = string
-  sensitive =true
+  type      = string
+  sensitive = true
 }
 
 variable "db_password" {
-  type = string
-  sensitive =true
+  type      = string
+  sensitive = true
 }
 
 variable "db_host" {
@@ -56,6 +56,15 @@ variable "db_port" {
 variable "db_name" {
   type = string
 }
+
+variable "min_size" {
+  type = number
+}
+
+variable "max_size" {
+  type = number
+}
+
 
 locals {
   ssh_port    = 22

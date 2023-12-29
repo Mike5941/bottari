@@ -11,44 +11,44 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-2"
-  alias = "primary"
+  alias  = "primary"
 }
 
 provider "aws" {
   region = "ap-northeast-1"
-  alias = "secondary"
+  alias  = "secondary"
 }
 
 module "db_secrets" {
   source      = "../../../global/secrets"
-  secret_name = "MyDatabaseSecret"
+  secret_name = "MyDatabaseSecret2"
 }
 
 
 module "primary" {
   source = "../../../modules/database/mysql"
 
-  providers ={
+  providers = {
     aws = aws.primary
   }
 
-  vpc_remote_state_key    = "stage/network/primary/terraform.tfstate"
+  vpc_remote_state_key = "stage/network/primary/terraform.tfstate"
 
-  db_name              = "wordpress_db"
+  db_name                 = "wordpress_db"
   backup_retention_period = 1
 
   db_username = module.db_secrets.db_credentials["username"]
   db_password = module.db_secrets.db_credentials["password"]
 }
 
-module "secondary" {
-  source = "../../../modules/database/mysql"
-
-  providers = {
-    aws = aws.secondary
-  }
-
-  vpc_remote_state_key    = "stage/network/secondary/terraform.tfstate"
-
-  replicate_source_db = module.primary.arn
-}
+#module "secondary" {
+#  source = "../../../modules/database/mysql"
+#
+#  providers = {
+#    aws = aws.secondary
+#  }
+#
+#  vpc_remote_state_key = "stage/network/secondary/terraform.tfstate"
+#
+#  replicate_source_db = module.primary.arn
+#}
