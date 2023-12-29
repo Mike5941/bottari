@@ -11,7 +11,7 @@ terraform {
 
 module "db_secrets" {
   source      = "../../../../global/secrets"
-  secret_name = "MyDatabaseSecret2"
+  secret_name = "MyDatabaseSecret"
 }
 
 module "primary_webserver" {

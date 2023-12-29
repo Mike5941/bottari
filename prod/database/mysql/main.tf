@@ -21,7 +21,7 @@ provider "aws" {
 
 module "db_secrets" {
   source      = "../../../global/secrets"
-  secret_name = "MyDatabaseSecret2"
+  secret_name = "MyDatabaseSecret"
 }
 
 

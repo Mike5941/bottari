@@ -49,11 +49,11 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
 # terraform {
 #   backend "s3" {
-#     bucket = "terraform-wonsoong2"
+#     bucket = "terraform-wonsoong"
 #     key    = "global/s3/terraform.tfstate"
 #     region = "ap-northeast-2"
 
-#     dynamodb_table = "terraform-wonsoong2"
+#     dynamodb_table = "terraform-wonsoong"
 #     encrypt        = true
 #   }
 # }
