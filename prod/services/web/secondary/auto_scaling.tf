@@ -32,6 +32,8 @@ module "secondary_webserver" {
   remote_state_bucket  = "terraform-wonsoong"
   vpc_remote_state_key = "stage/network/secondary/terraform.tfstate"
   private_ip           = "10.2.1.100"
+  max_size = 2
+  min_size = 1
 
   db_username = module.db_secrets.db_credentials["username"]
   db_password = module.db_secrets.db_credentials["password"]
