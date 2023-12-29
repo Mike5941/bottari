@@ -1,27 +1,20 @@
-#resource "aws_instance" "web" {
-#  ami           = data.aws_ami.amazon_linux2.id  // Amazon Linux 2 AMI
-#  instance_type = "t3.small"
-#  key_name      = "wonsoong"
-#  subnet_id     = data.terraform_remote_state.vpc.outputs.private_subnet[0]
-#  vpc_security_group_ids = [aws_security_group.wordpress.id]
-#  private_ip = var.private_ip
-#
-#  user_data = base64encode(templatefile("${path.module}/user-data.sh", {
-#    db_name = var.db_name
-#    db_username = var.db_username
-#    db_password = var.db_password
-#    db_host  = var.db_host
-#    db_port     = var.db_port
-#  }))
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#
-#  tags = {
-#    Name = "${var.cluster_name}-WEB-"
-#  }
-#}
+resource "aws_instance" "bastion_host" {
+  ami           = data.aws_ami.amazon_linux2.id  // Amazon Linux 2 AMI
+  instance_type = "t2.micro"
+  key_name      = "wonsoong"
+  subnet_id     = data.terraform_remote_state.vpc.outputs.public_subnet[0]
+  vpc_security_group_ids = [aws_security_group.bastion.id]
+
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
+    Name = "Bastion Host"
+  }
+}
+
 
 resource "aws_launch_configuration" "wordpress" {
   image_id        = data.aws_ami.amazon_linux2.id
@@ -65,8 +58,7 @@ resource "aws_launch_configuration" "wordpress" {
      propagate_at_launch = true
    }
 
- }
-
+}
 
  resource "aws_lb" "wordpress" {
    name               = var.cluster_name
@@ -150,3 +142,28 @@ resource "aws_lb_listener_rule" "asg" {
 #   recurrence             = "0 17 * * *"
 #   autoscaling_group_name = aws_autoscaling_group.example.name
 # }
+
+#resource "aws_instance" "web" {
+#  ami           = data.aws_ami.amazon_linux2.id  // Amazon Linux 2 AMI
+#  instance_type = "t3.small"
+#  key_name      = "wonsoong"
+#  subnet_id     = data.terraform_remote_state.vpc.outputs.private_subnet[0]
+#  vpc_security_group_ids = [aws_security_group.wordpress.id]
+#  private_ip = var.private_ip
+#
+#  user_data = base64encode(templatefile("${path.module}/user-data.sh", {
+#    db_name = var.db_name
+#    db_username = var.db_username
+#    db_password = var.db_password
+#    db_host  = var.db_host
+#    db_port     = var.db_port
+#  }))
+#
+#  lifecycle {
+#    create_before_destroy = true
+#  }
+#
+#  tags = {
+#    Name = "${var.cluster_name}-WEB-"
+#  }
+#}
